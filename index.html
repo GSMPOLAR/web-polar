@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="GSM-POLAR - trabajando en nuevos procesos lo mejor en garantias polar">
+  <title>GSM-POLAR • Lo mejor en garantías polar</title>
+  
+  <!-- Tipografías de alta gama -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;0,800;1,500&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VARIABLES Y SISTEMA DE DISEÑO ULTRA-MODERNO (CYBER-LUXE / NEON GLASS)
+       ========================================================================== */
+    :root {
+      --bg-dark: #08060a;
+      --bg-surface: #110c16;
+      --bg-card: rgba(18, 12, 24, 0.72);
+      --bg-card-hover: rgba(28, 18, 38, 0.85);
+      --bg-glass: rgba(18, 12, 24, 0.6);
+      
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(255, 23, 68, 0.45);
+      --border-active: rgba(251, 113, 133, 0.6);
+
+      --neon-primary: #ff1744;     /* Rojo carmesí vibrante como los ojos */
+      --neon-secondary: #fb7185;   /* Rosa coral suave */
+      --neon-ruby: #e11d48;        /* Rubí intenso */
+      --neon-violet: #c084fc;      /* Púrpura místico del cabello/sombras */
+      --neon-emerald: #10b981;     /* Indicador de verificación válido */
+      --neon-rose: #ff0055;        /* Alerta y dígito de control */
+      --neon-amber: #f59e0b;
+
+      --text-primary: #fff1f2;     /* Blanco con sutil calidez rosa */
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+
+      --shadow-glow-ruby: 0 0 30px rgba(255, 23, 68, 0.35);
+      --shadow-glow-rose: 0 0 25px rgba(251, 113, 133, 0.3);
+      --shadow-glass: 0 20px 45px -15px rgba(0, 0, 0, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       ETAPA DE MEDIOS DE FONDO (VIDEO EN BUCLE + FRAME DE ALTA SATURACIÓN)
+       ========================================================================== */
+    .bg-media-stage {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background: #08060a;
+    }
+
+    .bg-video-element {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      filter: saturate(1.88) contrast(1.22) brightness(1.08);
+      opacity: 0;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+    }
+
+    .bg-video-element.active {
+      opacity: 1;
+    }
+
+    .bg-image-layer {
+      position: absolute;
+      inset: -15px;
+      background-image: 
+        url('videoframe_9214.png'),
+        url('bg_polar.jpg'),
+        url('https://i.pinimg.com/originals/23/95/c4/2395c41f1f63d17b23912ab7c1559bd5.jpg');
+      background-repeat: no-repeat;
+      background-position: center 25%;
+      background-size: cover;
+      filter: saturate(1.95) contrast(1.25) brightness(1.12);
+      transform: scale(1.03);
+      animation: slowCinematicMotion 26s ease-in-out infinite alternate;
+      z-index: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    @keyframes slowCinematicMotion {
+      0% { transform: scale(1.03) translate(0, 0); }
+      50% { transform: scale(1.07) translate(-10px, -6px); }
+      100% { transform: scale(1.04) translate(8px, 4px); }
+    }
+
+    .bg-overlay-glass {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 6, 12, 0.22) 0%,
+        rgba(10, 7, 14, 0.52) 24%,
+        rgba(10, 7, 14, 0.85) 50%,
+        rgba(10, 7, 14, 0.97) 82%,
+        #0a070e 100%
+      );
+      z-index: 2;
+    }
+
+    /* Luces ambientales y auroras de fondo armonizadas con los ojos carmesí */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.28;
+      animation: floatAurora 18s ease-in-out infinite alternate;
+    }
+
+    .glow-1 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(255, 23, 68, 0.5), transparent 70%);
+      top: -120px;
+      left: -120px;
+    }
+
+    .glow-2 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.35), transparent 70%);
+      bottom: -150px;
+      right: -150px;
+      animation-delay: -7s;
+    }
+
+    .glow-3 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(251, 113, 133, 0.3), transparent 70%);
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.25;
+      animation-delay: -12s;
+    }
+
+    @keyframes floatAurora {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.1); }
+      100% { transform: translate(-30px, -20px) scale(0.95); }
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .app-viewport {
+      width: 100%;
+      max-width: 760px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+      padding: 1.25rem 1rem 3rem 1rem;
+      gap: 1.25rem;
+    }
+
+    /* HEADER LIQUID GLASS */
+    header.hero-header {
+      background: linear-gradient(145deg, rgba(28, 18, 36, 0.9) 0%, rgba(16, 10, 22, 0.94) 100%);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid rgba(255, 110, 140, 0.28);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 
+        inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 0 20px 0 rgba(255, 23, 68, 0.08),
+        0 24px 55px -12px rgba(0, 0, 0, 0.85),
+        0 0 35px rgba(255, 23, 68, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-primary), var(--neon-secondary), transparent);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo-gem {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #ff1744, #9f1239);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: #fff;
+      box-shadow: 
+        inset 0 1.5px 1px rgba(255, 255, 255, 0.45),
+        0 0 25px rgba(255, 23, 68, 0.55);
+      position: relative;
+    }
+
+    .brand-logo-gem::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent);
+      z-index: -1;
+    }
+
+    .brand-info h1 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, #ffffff 40%, var(--neon-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-info p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .action-icon-btn {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 110, 140, 0.25);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0, 0, 0, 0.4);
+      color: var(--text-secondary);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .action-icon-btn:hover {
+      background: rgba(255, 23, 68, 0.2);
+      color: var(--text-primary);
+      border-color: var(--neon-primary);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 18px rgba(255, 23, 68, 0.4);
+    }
+
+    /* PESTAÑAS NAVEGACIÓN LIQUID GLASS PILL */
+    .nav-bar-pill {
+      background: linear-gradient(155deg, rgba(28, 17, 36, 0.92) 0%, rgba(14, 9, 20, 0.95) 100%);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid rgba(255, 110, 140, 0.28);
+      border-radius: var(--radius-md);
+      padding: 0.4rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+      box-shadow: 
+        inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 0 15px 0 rgba(255, 23, 68, 0.08),
+        0 20px 45px rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-pill-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 0.75rem 0.5rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .nav-pill-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-pill-btn.active {
+      background: linear-gradient(135deg, rgba(255, 23, 68, 0.9) 0%, rgba(190, 18, 60, 0.8) 100%);
+      color: #ffffff;
+      box-shadow: 
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.45),
+        0 0 25px rgba(255, 23, 68, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* PANELES DE CONTENIDO LIQUID GLASS DENSO */
+    .content-card {
+      display: none;
+      background: linear-gradient(155deg, rgba(26, 16, 34, 0.9) 0%, rgba(16, 10, 22, 0.94) 50%, rgba(11, 7, 15, 0.97) 100%);
+      backdrop-filter: blur(34px) saturate(200%);
+      -webkit-backdrop-filter: blur(34px) saturate(200%);
+      border: 1px solid rgba(255, 110, 140, 0.28);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      box-shadow: 
+        inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 0 25px 0 rgba(255, 23, 68, 0.1),
+        0 30px 60px -15px rgba(0, 0, 0, 0.88),
+        0 0 40px rgba(255, 23, 68, 0.14);
+      animation: panelFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .content-card.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    @keyframes panelFadeIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .card-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-heading h2 {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .badge-chip {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 0.28rem 0.65rem;
+      border-radius: var(--radius-full);
+      background: rgba(255, 23, 68, 0.12);
+      color: var(--neon-secondary);
+      border: 1px solid rgba(255, 23, 68, 0.3);
+    }
+
+    /* INPUTS ULTRA-ESTILIZADOS */
+    .input-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .field-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .styled-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .styled-input {
+      width: 100%;
+      background: rgba(12, 8, 16, 0.92);
+      border: 1px solid rgba(255, 110, 140, 0.2);
+      border-radius: var(--radius-md);
+      padding: 0.95rem 1.1rem;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      outline: none;
+      transition: all 0.25s ease;
+      box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 1px 2px rgba(0, 0, 0, 0.9),
+        0 1px 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .styled-input:focus {
+      border-color: var(--neon-primary);
+      box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.7),
+        0 0 22px rgba(255, 23, 68, 0.35),
+        0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+
+    select.styled-input {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      letter-spacing: normal;
+      cursor: pointer;
+    }
+
+    /* BOTONES PRIMARIOS LIQUID RUBY */
+    .btn-glow-cta {
+      background: linear-gradient(135deg, #ff1744 0%, #d81141 50%, #9f1239 100%);
+      color: #ffffff;
+      border: none;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.98rem;
+      padding: 0.95rem 1.4rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.45),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+        0 8px 30px rgba(255, 23, 68, 0.5);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-glow-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.55),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+        0 12px 38px rgba(255, 23, 68, 0.65);
+    }
+
+    .btn-glow-cta:active {
+      transform: translateY(1px);
+    }
+
+    .btn-glow-cta::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: btnShine 3s infinite;
+    }
+
+    @keyframes btnShine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    /* INSPECTOR VISUAL DE DÍGITOS LIQUID GLASS */
+    .digit-inspector {
+      background: linear-gradient(160deg, rgba(24, 15, 32, 0.92) 0%, rgba(12, 7, 16, 0.96) 100%);
+      backdrop-filter: blur(30px) saturate(200%);
+      -webkit-backdrop-filter: blur(30px) saturate(200%);
+      border: 1px solid rgba(255, 110, 140, 0.26);
+      border-radius: var(--radius-md);
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      position: relative;
+      box-shadow: 
+        inset 0 1.5px 1px rgba(255, 255, 255, 0.3),
+        inset 0 0 20px rgba(255, 23, 68, 0.08),
+        0 20px 45px rgba(0, 0, 0, 0.75);
+    }
+
+    .digit-inspector.is-valid {
+      border-color: rgba(16, 185, 129, 0.6);
+      box-shadow: 
+        inset 0 1.5px 1px rgba(255, 255, 255, 0.35),
+        0 0 35px rgba(16, 185, 129, 0.25);
+    }
+
+    .digit-inspector.is-invalid {
+      border-color: rgba(255, 23, 68, 0.6);
+      box-shadow: 
+        inset 0 1.5px 1px rgba(255, 255, 255, 0.35),
+        0 0 35px rgba(255, 23, 68, 0.3);
+    }
+
+    .inspector-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .status-badge-live {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-primary);
+      box-shadow: 0 0 10px var(--neon-primary);
+      animation: pulseDot 1.5s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    /* REJILLA DE DÍGITOS 15 CASILLAS */
+    .digit-ribbon {
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      gap: 3px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 9px 7px;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .digit-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: var(--radius-xs);
+      padding: 7px 2px;
+      min-width: 22px;
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .digit-slot.tac {
+      background: linear-gradient(180deg, rgba(255, 23, 68, 0.3) 0%, rgba(255, 23, 68, 0.12) 100%);
+      border: 1px solid rgba(255, 23, 68, 0.45);
+    }
+
+    .digit-slot.fac {
+      background: linear-gradient(180deg, rgba(251, 113, 133, 0.3) 0%, rgba(251, 113, 133, 0.12) 100%);
+      border: 1px solid rgba(251, 113, 133, 0.45);
+    }
+
+    .digit-slot.snr {
+      background: linear-gradient(180deg, rgba(192, 132, 252, 0.28) 0%, rgba(192, 132, 252, 0.1) 100%);
+      border: 1px solid rgba(192, 132, 252, 0.4);
+    }
+
+    .digit-slot.cd {
+      background: linear-gradient(180deg, rgba(255, 0, 85, 0.45) 0%, rgba(255, 0, 85, 0.2) 100%);
+      border: 1px solid rgba(255, 0, 85, 0.7);
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        0 0 18px rgba(255, 0, 85, 0.55);
+    }
+
+    .digit-char {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #fff;
+    }
+
+    .digit-weight {
+      font-size: 0.58rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-top: 2px;
+    }
+
+    /* TARJETAS DE DESGLOSE TÉCNICO LIQUID GLASS */
+    .meta-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .meta-box {
+      background: linear-gradient(155deg, rgba(30, 18, 38, 0.85) 0%, rgba(14, 8, 18, 0.92) 100%);
+      border: 1px solid rgba(255, 110, 140, 0.22);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 6px 16px rgba(0, 0, 0, 0.45);
+    }
+
+    .meta-title {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-value {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* ACCIONES DE COPIADO */
+    .copy-actions-bar {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary-action {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary-action:hover {
+      background: rgba(255, 23, 68, 0.12);
+      border-color: rgba(255, 23, 68, 0.35);
+    }
+
+    /* MARCAS Y PRESETS RÁPIDOS */
+    .brand-chips-scroll {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+    }
+
+    .brand-quick-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.55rem 0.95rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand-quick-chip:hover, .brand-quick-chip.selected {
+      background: rgba(255, 23, 68, 0.22);
+      border-color: var(--neon-primary);
+      color: #fff;
+      box-shadow: 0 0 18px rgba(255, 23, 68, 0.35);
+    }
+
+    /* LISTA DE IMEIS GENERADOS */
+    .batch-results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .batch-item-card {
+      background: rgba(14, 10, 18, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .batch-item-card:hover {
+      border-color: rgba(255, 23, 68, 0.35);
+      background: rgba(22, 14, 28, 0.85);
+    }
+
+    .batch-imei-text {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    /* GESTIÓN DE MODELOS */
+    .model-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .model-item-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 23, 68, 0.3);
+    }
+
+    /* TOAST DE NOTIFICACIÓN */
+    .toast-pill {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(70px);
+      background: rgba(14, 10, 18, 0.95);
+      border: 1px solid var(--neon-primary);
+      box-shadow: 0 10px 30px rgba(255, 23, 68, 0.45);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+    }
+
+    .toast-pill.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* GUÍA DE PUBLICACIÓN MODAL */
+    .publish-box {
+      background: rgba(255, 23, 68, 0.08);
+      border: 1px solid rgba(255, 23, 68, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .publish-box strong {
+      color: var(--neon-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ETAPA DE FONDO DE MEDIOS (VIDEO & FRAME DE C:\Users\Jhose\Documents\videos) -->
+  <div class="bg-media-stage">
+    <video id="bgVideo" class="bg-video-element" autoplay muted loop playsinline preload="auto">
+      <source src="video.mp4" type="video/mp4">
+      <source src="background.mp4" type="video/mp4">
+      <source src="videoframe_9214.mp4" type="video/mp4">
+    </video>
+    <div id="bgImageLayer" class="bg-image-layer"></div>
+    <div class="bg-overlay-glass"></div>
+  </div>
+
+  <!-- AURORAS AMBIENTALES -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div class="app-viewport">
+    
+    <!-- HEADER -->
+    <header class="hero-header">
+      <div class="brand-wrap">
+        <div class="brand-logo-gem">GP</div>
+        <div class="brand-info">
+          <h1>GSM-POLAR</h1>
+          <p>
+            <span class="pulse-dot"></span>
+            trabajando en nuevos procesos lo mejor en garantias polar
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="action-icon-btn" id="btnMediaPicker" title="🎬 Elegir Video o Fondo (desde C:\Users\Jhose\Documents\videos)" onclick="document.getElementById('bgMediaInput').click()">🎬</button>
+        <input type="file" id="bgMediaInput" accept="video/mp4,video/webm,video/ogg,image/*" style="display:none" onchange="handleMediaUpload(event)">
+        <button class="action-icon-btn" id="btnAudioToggle" title="Sonido Táctil" onclick="toggleAudioFeedback()">🔊</button>
+        <button class="action-icon-btn" id="btnDeployInfo" title="Publicar en la Web" onclick="switchTab('publish')">🌐</button>
+      </div>
+    </header>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav class="nav-bar-pill">
+      <button class="nav-pill-btn active" id="pillVerify" onclick="switchTab('verify')">
+        <span>🔍 Verificador</span>
+      </button>
+      <button class="nav-pill-btn" id="pillGenerate" onclick="switchTab('generate')">
+        <span>⚡ Generador</span>
+      </button>
+      <button class="nav-pill-btn" id="pillDatabase" onclick="switchTab('database')">
+        <span>📱 Modelos TAC</span>
+      </button>
+    </nav>
+
+    <!-- =========================================================================
+         PANEL 1: VERIFICADOR EN VIVO (14 O 15 DÍGITOS)
+         ========================================================================= -->
+    <section class="content-card active" id="panelVerify">
+      <div class="card-heading">
+        <h2>
+          <span>🔍</span> Verificador Estructural
+        </h2>
+        <span class="badge-chip">LUHN MOD-10</span>
+      </div>
+
+      <div class="input-field-group">
+        <div class="field-label-row">
+          <span>Ingresa 14 dígitos (calcula el 15º) o 15 dígitos (valida)</span>
+          <span id="charCounter" style="font-family: var(--font-mono); color: var(--neon-secondary);">14 / 15</span>
+        </div>
+        <div class="styled-input-wrap">
+          <input 
+            type="text" 
+            id="imeiInput" 
+            class="styled-input" 
+            placeholder="Ej: 35284011123456" 
+            maxlength="15"
+            autocomplete="off"
+            value="35284011123456"
+            oninput="processImeiInput(this.value)"
+          >
+        </div>
+      </div>
+
+      <!-- VISUALIZADOR DE DÍGITOS TIPO CHIP (RIBBON) -->
+      <div class="digit-inspector" id="inspectorBox">
+        <div class="inspector-header">
+          <div class="status-badge-live" id="statusBadge">
+            <span class="pulse-dot"></span>
+            <span id="statusText">Calculando Dígito de Control...</span>
+          </div>
+          <button class="action-icon-btn" style="width: 30px; height: 30px; font-size: 0.8rem;" onclick="copyCurrentImei()" title="Copiar IMEI">📋</button>
+        </div>
+
+        <!-- 15 RANURAS VISUALES CON PESOS (×1, ×2) -->
+        <div class="digit-ribbon" id="digitRibbon">
+          <!-- Renderizado dinámicamente con JS -->
+        </div>
+
+        <!-- METADATOS TÉCNICOS DESGLOSADOS -->
+        <div class="meta-cards-grid">
+          <div class="meta-box">
+            <span class="meta-title">TAC (8d GSMA)</span>
+            <span class="meta-value" id="dispTac8" style="color: var(--neon-secondary);">35284011</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-title">TAC Clásico + FAC</span>
+            <span class="meta-value" id="dispTacFac" style="color: #cbd5e1;">352840 + 11</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-title">SNR (Serie 6d)</span>
+            <span class="meta-value" id="dispSnr" style="color: var(--neon-violet);">123456</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-title">15º Dígito (Control)</span>
+            <span class="meta-value" id="dispCd" style="color: var(--neon-rose); font-size: 1.25rem;">6</span>
+          </div>
+        </div>
+
+        <div class="copy-actions-bar">
+          <button class="btn-secondary-action" onclick="copyFormatted(false)">📋 Copiar Continuo</button>
+          <button class="btn-secondary-action" onclick="copyFormatted(true)">📑 Copiar con Espacios</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         PANEL 2: GENERADOR POR MARCAS Y TACs
+         ========================================================================= -->
+    <section class="content-card" id="panelGenerate">
+      <div class="card-heading">
+        <h2>
+          <span>⚡</span> Generador por Modelos
+        </h2>
+        <span class="badge-chip">PRESETS OFICIALES</span>
+      </div>
+
+      <!-- Chips de Selección Rápida de Marca -->
+      <div class="input-field-group">
+        <div class="field-label-row">
+          <span>Marca Rápida</span>
+        </div>
+        <div class="brand-chips-scroll" id="brandChipsRow">
+          <!-- Generado con JS -->
+        </div>
+      </div>
+
+      <!-- Selector de Modelo -->
+      <div class="input-field-group">
+        <div class="field-label-row">
+          <span>Modelo Específico</span>
+          <span id="labelTacInfo" style="font-family: var(--font-mono); color: var(--neon-secondary);">TAC: --</span>
+        </div>
+        <select id="selectModelGen" class="styled-input" onchange="onModelGenChange(this.value)">
+          <!-- Opciones dinámicas -->
+        </select>
+      </div>
+
+      <!-- Cantidad a Generar -->
+      <div class="input-field-group">
+        <div class="field-label-row">
+          <span>Cantidad a Generar</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+          <button class="btn-secondary-action qty-btn active" onclick="setQty(1, this)">1</button>
+          <button class="btn-secondary-action qty-btn" onclick="setQty(3, this)">3</button>
+          <button class="btn-secondary-action qty-btn" onclick="setQty(5, this)">5</button>
+          <button class="btn-secondary-action qty-btn" onclick="setQty(10, this)">10</button>
+        </div>
+      </div>
+
+      <button class="btn-glow-cta" id="btnRunGenerate" onclick="generateBatchImeis()">
+        <span>⚡ Generar IMEIs con Dígito de Control</span>
+      </button>
+
+      <!-- Resultados Generados -->
+      <div class="batch-results-list" id="batchResultsList">
+        <!-- Renderizado dinámico -->
+      </div>
+
+      <div class="copy-actions-bar" id="batchActionsBar" style="display: none;">
+        <button class="btn-secondary-action" onclick="copyAllBatch()">📑 Copiar Todos</button>
+        <button class="btn-secondary-action" onclick="exportBatchCsv()">📥 Exportar CSV</button>
+        <button class="btn-secondary-action" onclick="clearBatchList()">🗑️ Limpiar</button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         PANEL 3: ADMINISTRACIÓN DE MODELOS Y TACs (SIN PROGRAMAR)
+         ========================================================================= -->
+    <section class="content-card" id="panelDatabase">
+      <div class="card-heading">
+        <h2>
+          <span>📱</span> Modelos y TACs
+        </h2>
+        <span class="badge-chip">JSON EDITABLE</span>
+      </div>
+
+      <div class="copy-actions-bar">
+        <button class="btn-secondary-action" onclick="toggleAddModal(true)">➕ Nuevo Modelo</button>
+        <button class="btn-secondary-action" onclick="exportTacDatabaseJson()">📥 Descargar JSON</button>
+        <button class="btn-secondary-action" onclick="resetDefaultDatabase()">🔄 Restaurar</button>
+      </div>
+
+      <!-- Formulario Desplegable para Agregar -->
+      <div id="addModelBox" style="display: none; background: rgba(18, 12, 24, 0.95); border: 1px solid var(--neon-primary); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 0.5rem;">
+        <h3 style="font-family: var(--font-display); font-size: 1rem; color: #fff; margin-bottom: 0.75rem;">Añadir Nuevo Teléfono</h3>
+        <div class="input-field-group" style="margin-bottom: 0.75rem;">
+          <input type="text" id="addBrand" class="styled-input" placeholder="Marca (ej: Samsung, Xiaomi, Apple)">
+        </div>
+        <div class="input-field-group" style="margin-bottom: 0.75rem;">
+          <input type="text" id="addModel" class="styled-input" placeholder="Modelo (ej: Galaxy S24 Ultra, Redmi Note 13)">
+        </div>
+        <div class="input-field-group" style="margin-bottom: 1rem;">
+          <input type="text" id="addTac" class="styled-input" placeholder="TAC de 8 dígitos (ej: 35284011)" maxlength="8">
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn-glow-cta" style="flex: 1;" onclick="submitNewModel()">Guardar en Base de Datos</button>
+          <button class="btn-secondary-action" onclick="toggleAddModal(false)">Cancelar</button>
+        </div>
+      </div>
+
+      <div id="databaseListContainer" style="display: flex; flex-direction: column; gap: 0.75rem; max-height: 400px; overflow-y: auto;">
+        <!-- Lista dinámica de marcas y modelos -->
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         PANEL 4: CÓMO PUBLICAR ESTA WEB GRATIS EN INTERNET
+         ========================================================================= -->
+    <section class="content-card" id="panelPublish">
+      <div class="card-heading">
+        <h2>
+          <span>🌐</span> Cómo Publicar esta Web
+        </h2>
+        <span class="badge-chip">100% GRATIS</span>
+      </div>
+
+      <div class="publish-box">
+        <p>Esta aplicación es <strong>100% independiente y cliente-servidor nativo</strong>. Puedes subirla a internet y abrirla desde cualquier celular o PC con un link público en menos de 2 minutos:</p>
+        
+        <div>
+          <strong>Opción 1: Vercel / Netlify (La más rápida - Sin código)</strong>
+          <p>1. Entra a <a href="https://drop.netlify.com" target="_blank" style="color: var(--neon-secondary);">drop.netlify.com</a> o <a href="https://vercel.com" target="_blank" style="color: var(--neon-secondary);">vercel.com</a>.</p>
+          <p>2. Arrastra la carpeta donde está este <code>index.html</code>.</p>
+          <p>3. En 10 segundos te dará un link público como <code>tu-app.netlify.app</code> que puedes abrir en cualquier teléfono.</p>
+        </div>
+
+        <div>
+          <strong>Opción 2: GitHub Pages</strong>
+          <p>1. Sube este archivo <code>index.html</code> a un repositorio público en GitHub.</p>
+          <p>2. Ve a <em>Settings → Pages → Source: main branch</em>.</p>
+          <p>3. Tendrás tu web en <code>tu-usuario.github.io/tu-repo</code>.</p>
+        </div>
+
+        <div>
+          <strong>Opción 3: Probar ahora mismo en tu celular en la misma red Wi-Fi</strong>
+          <p>Como tu PC ya tiene el servidor activo en el puerto 8000, solo busca la IP local de tu PC (ej: <code>ipconfig</code> en consola, ej: <code>192.168.1.50</code>) y en el navegador de tu celular escribe: <code>http://192.168.1.50:8000/index.html</code>.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div class="toast-pill" id="appToast">
+    <span>✓</span>
+    <span id="toastMsg">Copiado al portapapeles</span>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script>
+    // BASE DE DATOS INICIAL
+    const DEFAULT_DB = {
+      "Samsung": [
+        { model: "Galaxy S24 Ultra", tac: "35418923", tac_6: "354189", fac_2: "23" },
+        { model: "Galaxy S23 Ultra", tac: "35284011", tac_6: "352840", fac_2: "11" },
+        { model: "Galaxy A54 5G", tac: "35912448", tac_6: "359124", fac_2: "48" }
+      ],
+      "Xiaomi": [
+        { model: "Xiaomi 14 Pro", tac: "86940206", tac_6: "869402", fac_2: "06" },
+        { model: "Redmi Note 13 Pro", tac: "86420108", tac_6: "864201", fac_2: "08" },
+        { model: "POCO X6 Pro", tac: "86311009", tac_6: "863110", fac_2: "09" }
+      ],
+      "Apple": [
+        { model: "iPhone 15 Pro Max", tac: "35384145", tac_6: "353841", fac_2: "45" },
+        { model: "iPhone 14 Pro", tac: "35384139", tac_6: "353841", fac_2: "39" },
+        { model: "iPhone 13", tac: "35613867", tac_6: "356138", fac_2: "67" }
+      ],
+      "Motorola": [
+        { model: "Edge 50 Ultra", tac: "35890219", tac_6: "358902", fac_2: "19" },
+        { model: "Moto G84 5G", tac: "35741029", tac_6: "357410", fac_2: "29" }
+      ],
+      "Google": [
+        { model: "Pixel 8 Pro", tac: "35489012", tac_6: "354890", fac_2: "12" }
+      ]
+    };
+
+    let tacDb = {};
+    let selectedQty = 3;
+    let audioFeedback = true;
+    let currentRawImei = "35284011123456";
+
+    // AUDIO FEEDBACK TÁCTIL (Web Audio API sintetizada)
+    const audioCtx = (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined')
+      ? new (window.AudioContext || window.webkitAudioContext)()
+      : null;
+
+    function playBeep(freq = 600, duration = 0.04) {
+      if (!audioFeedback || !audioCtx) return;
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function toggleAudioFeedback() {
+      audioFeedback = !audioFeedback;
+      document.getElementById("btnAudioToggle").innerText = audioFeedback ? "🔊" : "🔇";
+      showToast(audioFeedback ? "Sonido activado" : "Sonido silenciado");
+    }
+
+    // INICIALIZACIÓN
+    function initDatabase() {
+      const saved = localStorage.getItem("imei_ultimate_db");
+      if (saved) {
+        try { tacDb = JSON.parse(saved); }
+        catch (e) { tacDb = JSON.parse(JSON.stringify(DEFAULT_DB)); }
+      } else {
+        tacDb = JSON.parse(JSON.stringify(DEFAULT_DB));
+      }
+    }
+
+    function saveDatabase() {
+      localStorage.setItem("imei_ultimate_db", JSON.stringify(tacDb));
+      renderBrandChips();
+      renderDatabaseTab();
+    }
+
+    // ALGORITMO DE LUHN (MOD 10)
+    function calcLuhnCd(number14) {
+      if (number14.length !== 14 || !/^\d+$/.test(number14)) return -1;
+      let sum = 0;
+      for (let i = 0; i < 14; i++) {
+        let d = parseInt(number14.charAt(i), 10);
+        if (i % 2 === 1) { // Índices pares (1, 3, 5...)
+          let doubled = d * 2;
+          sum += doubled < 10 ? doubled : (doubled - 9);
+        } else {
+          sum += d;
+        }
+      }
+      return (10 - (sum % 10)) % 10;
+    }
+
+    // PROCESAMIENTO EN VIVO DE ENTRADA
+    function processImeiInput(val) {
+      const clean = val.replace(/\D/g, "");
+      currentRawImei = clean;
+      document.getElementById("charCounter").innerText = `${clean.length} / 15`;
+
+      const ribbon = document.getElementById("digitRibbon");
+      const box = document.getElementById("inspectorBox");
+      const badge = document.getElementById("statusBadge");
+      const statusText = document.getElementById("statusText");
+
+      if (clean.length < 14) {
+        box.className = "digit-inspector";
+        statusText.innerText = `Ingresa al menos 14 dígitos (actual: ${clean.length})`;
+        statusText.style.color = "var(--text-muted)";
+        renderRibbonFallback(clean);
+        return;
+      }
+
+      playBeep(clean.length === 15 ? 880 : 720, 0.03);
+
+      const payload14 = clean.substring(0, 14);
+      const computedCd = calcLuhnCd(payload14);
+
+      // Renderizar ranuras de dígitos
+      let ribbonHtml = "";
+      for (let i = 0; i < 14; i++) {
+        const char = payload14.charAt(i);
+        const weight = (i % 2 === 1) ? "×2" : "×1";
+        let zoneClass = "tac";
+        if (i >= 6 && i <= 7) zoneClass = "fac";
+        else if (i >= 8) zoneClass = "snr";
+
+        ribbonHtml += `
+          <div class="digit-slot ${zoneClass}">
+            <span class="digit-char">${char}</span>
+            <span class="digit-weight">${weight}</span>
+          </div>
+        `;
+      }
+
+      // Desglose
+      document.getElementById("dispTac8").innerText = payload14.substring(0, 8);
+      document.getElementById("dispTacFac").innerText = `${payload14.substring(0, 6)} + ${payload14.substring(6, 8)}`;
+      document.getElementById("dispSnr").innerText = payload14.substring(8, 14);
+      document.getElementById("dispCd").innerText = computedCd;
+
+      if (clean.length === 14) {
+        box.className = "digit-inspector is-valid";
+        statusText.innerText = `✓ 14 DÍGITOS — 15º Dígito calculado: ${computedCd}`;
+        statusText.style.color = "var(--neon-emerald)";
+
+        ribbonHtml += `
+          <div class="digit-slot cd">
+            <span class="digit-char" style="color: var(--neon-rose);">${computedCd}</span>
+            <span class="digit-weight" style="color: var(--neon-rose);">LUHN</span>
+          </div>
+        `;
+      } else if (clean.length === 15) {
+        const inputCd = parseInt(clean.charAt(14), 10);
+        const isValid = (inputCd === computedCd);
+
+        if (isValid) {
+          box.className = "digit-inspector is-valid";
+          statusText.innerText = `✓ IMEI VÁLIDO — Dígito de control (${inputCd}) coincide con Luhn`;
+          statusText.style.color = "var(--neon-emerald)";
+          ribbonHtml += `
+            <div class="digit-slot cd" style="background: rgba(16, 185, 129, 0.25); border-color: var(--neon-emerald);">
+              <span class="digit-char" style="color: var(--neon-emerald);">${inputCd}</span>
+              <span class="digit-weight" style="color: var(--neon-emerald);">OK</span>
+            </div>
+          `;
+        } else {
+          box.className = "digit-inspector is-invalid";
+          statusText.innerText = `✗ INVÁLIDO — Dígito ingresado: ${inputCd} (Esperado: ${computedCd})`;
+          statusText.style.color = "var(--neon-rose)";
+          ribbonHtml += `
+            <div class="digit-slot cd">
+              <span class="digit-char" style="color: var(--neon-rose);">${inputCd}</span>
+              <span class="digit-weight" style="color: var(--neon-rose);">${computedCd}?</span>
+            </div>
+          `;
+        }
+      }
+
+      ribbon.innerHTML = ribbonHtml;
+    }
+
+    function renderRibbonFallback(str) {
+      const ribbon = document.getElementById("digitRibbon");
+      let html = "";
+      for (let i = 0; i < 15; i++) {
+        const char = str.charAt(i) || "-";
+        html += `
+          <div class="digit-slot" style="opacity: 0.4;">
+            <span class="digit-char">${char}</span>
+            <span class="digit-weight">--</span>
+          </div>
+        `;
+      }
+      ribbon.innerHTML = html;
+    }
+
+    // PANEL GENERADOR
+    let currentBrand = "";
+
+    function renderBrandChips() {
+      const container = document.getElementById("brandChipsRow");
+      container.innerHTML = "";
+      const brands = Object.keys(tacDb);
+      if (!brands.length) return;
+
+      currentBrand = brands[0];
+
+      brands.forEach(b => {
+        const btn = document.createElement("button");
+        btn.className = `brand-quick-chip ${b === currentBrand ? 'selected' : ''}`;
+        btn.innerText = b;
+        btn.onclick = () => selectBrandChip(b);
+        container.appendChild(btn);
+      });
+
+      populateModelsDropdown(currentBrand);
+    }
+
+    function selectBrandChip(brand) {
+      currentBrand = brand;
+      document.querySelectorAll(".brand-quick-chip").forEach(c => {
+        c.classList.toggle("selected", c.innerText === brand);
+      });
+      populateModelsDropdown(brand);
+      playBeep(520, 0.02);
+    }
+
+    function populateModelsDropdown(brand) {
+      const sel = document.getElementById("selectModelGen");
+      sel.innerHTML = "";
+      const list = tacDb[brand] || [];
+
+      list.forEach((m, idx) => {
+        const opt = document.createElement("option");
+        opt.value = idx;
+        const tac = m.tac || (m.tac_6 + m.fac_2);
+        opt.innerText = `${m.model} (${tac})`;
+        sel.appendChild(opt);
+      });
+
+      if (list.length) onModelGenChange(0);
+    }
+
+    function onModelGenChange(idx) {
+      const list = tacDb[currentBrand] || [];
+      const item = list[idx];
+      if (item) {
+        const tac = item.tac || (item.tac_6 + item.fac_2);
+        document.getElementById("labelTacInfo").innerText = `TAC: ${tac}`;
+      }
+    }
+
+    function setQty(n, btn) {
+      selectedQty = n;
+      document.querySelectorAll(".qty-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      playBeep(450, 0.02);
+    }
+
+    let generatedBatchList = [];
+
+    function generateBatchImeis() {
+      const list = tacDb[currentBrand] || [];
+      const idx = document.getElementById("selectModelGen").value;
+      const modelItem = list[idx];
+      if (!modelItem) return;
+
+      const tac8 = modelItem.tac || (modelItem.tac_6 + modelItem.fac_2);
+      generatedBatchList = [];
+      const container = document.getElementById("batchResultsList");
+      container.innerHTML = "";
+
+      for (let i = 0; i < selectedQty; i++) {
+        let snr = "";
+        for (let s = 0; s < 6; s++) snr += Math.floor(Math.random() * 10);
+        const body14 = tac8 + snr;
+        const cd = calcLuhnCd(body14);
+        const full = body14 + cd;
+
+        generatedBatchList.push(full);
+
+        const card = document.createElement("div");
+        card.className = "batch-item-card";
+        card.innerHTML = `
+          <div>
+            <span class="batch-imei-text" style="color: var(--neon-secondary);">${body14}</span><span class="batch-imei-text" style="color: var(--neon-rose);">${cd}</span>
+            <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
+              ${modelItem.model} • TAC(6): ${tac8.substring(0,6)} FAC: ${tac8.substring(6,8)} SNR: ${snr}
+            </div>
+          </div>
+          <button class="action-icon-btn" style="width: 32px; height: 32px; font-size: 0.75rem;" onclick="copySingle('${full}')" title="Copiar">📋</button>
+        `;
+        container.appendChild(card);
+      }
+
+      document.getElementById("batchActionsBar").style.display = "flex";
+      playBeep(880, 0.05);
+      showToast(`Generados ${selectedQty} IMEI(s) válidos`);
+    }
+
+    function copySingle(val) {
+      navigator.clipboard.writeText(val);
+      playBeep(700, 0.03);
+      showToast(`Copiado: ${val}`);
+    }
+
+    function copyAllBatch() {
+      if (!generatedBatchList.length) return;
+      navigator.clipboard.writeText(generatedBatchList.join("\n"));
+      playBeep(750, 0.04);
+      showToast(`Copiados ${generatedBatchList.length} IMEIs al portapapeles`);
+    }
+
+    function exportBatchCsv() {
+      if (!generatedBatchList.length) return;
+      let csv = "Index,IMEI,TAC,FAC,SNR,CheckDigit\n";
+      generatedBatchList.forEach((imei, idx) => {
+        csv += `${idx + 1},${imei},${imei.substring(0,6)},${imei.substring(6,8)},${imei.substring(8,14)},${imei.substring(14)}\n`;
+      });
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `imei_export_${Date.now()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearBatchList() {
+      generatedBatchList = [];
+      document.getElementById("batchResultsList").innerHTML = "";
+      document.getElementById("batchActionsBar").style.display = "none";
+    }
+
+    // PANEL BASE DE DATOS
+    function renderDatabaseTab() {
+      const container = document.getElementById("databaseListContainer");
+      container.innerHTML = "";
+
+      for (const brand in tacDb) {
+        const brandBox = document.createElement("div");
+        brandBox.innerHTML = `
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; color: var(--neon-cyan); margin: 0.6rem 0 0.4rem 0;">
+            ${brand} (${tacDb[brand].length})
+          </div>
+        `;
+
+        tacDb[brand].forEach((m, idx) => {
+          const row = document.createElement("div");
+          row.className = "model-item-row";
+          const tac = m.tac || (m.tac_6 + m.fac_2);
+          row.innerHTML = `
+            <div>
+              <div style="font-weight: 700; font-size: 0.88rem; color: #fff;">${m.model}</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-indigo);">
+                TAC: ${tac} (TAC 6d: ${tac.substring(0,6)} • FAC 2d: ${tac.substring(6,8)})
+              </div>
+            </div>
+            <button class="action-icon-btn" style="width: 28px; height: 28px; color: var(--neon-rose);" onclick="deleteModelFromDb('${brand}', ${idx})">✕</button>
+          `;
+          brandBox.appendChild(row);
+        });
+
+        container.appendChild(brandBox);
+      }
+    }
+
+    function toggleAddModal(show) {
+      document.getElementById("addModelBox").style.display = show ? "block" : "none";
+    }
+
+    function submitNewModel() {
+      const brand = document.getElementById("addBrand").value.trim();
+      const model = document.getElementById("addModel").value.trim();
+      const tac = document.getElementById("addTac").value.trim().replace(/\D/g, "");
+
+      if (!brand || !model || tac.length !== 8) {
+        alert("Por favor ingresa la Marca, el Modelo y un TAC de 8 dígitos numéricos.");
+        return;
+      }
+
+      if (!tacDb[brand]) tacDb[brand] = [];
+      tacDb[brand].push({
+        model: model,
+        tac: tac,
+        tac_6: tac.substring(0, 6),
+        fac_2: tac.substring(6, 8)
+      });
+
+      saveDatabase();
+      toggleAddModal(false);
+      document.getElementById("addModel").value = "";
+      document.getElementById("addTac").value = "";
+      showToast(`¡Modelo '${model}' guardado!`);
+    }
+
+    function deleteModelFromDb(brand, idx) {
+      if (confirm("¿Eliminar este modelo?")) {
+        tacDb[brand].splice(idx, 1);
+        if (!tacDb[brand].length) delete tacDb[brand];
+        saveDatabase();
+        showToast("Modelo eliminado");
+      }
+    }
+
+    function resetDefaultDatabase() {
+      if (confirm("¿Restablecer la lista a los valores por defecto?")) {
+        tacDb = JSON.parse(JSON.stringify(DEFAULT_DB));
+        saveDatabase();
+        showToast("Base de datos restablecida");
+      }
+    }
+
+    function exportTacDatabaseJson() {
+      const blob = new Blob([JSON.stringify(tacDb, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "tac_database.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // COPIADO Y NAVEGACIÓN
+    function copyCurrentImei() {
+      if (currentRawImei.length === 14) {
+        const full = currentRawImei + calcLuhnCd(currentRawImei);
+        navigator.clipboard.writeText(full);
+        showToast(`Copiado: ${full}`);
+      } else if (currentRawImei.length === 15) {
+        navigator.clipboard.writeText(currentRawImei);
+        showToast(`Copiado: ${currentRawImei}`);
+      }
+    }
+
+    function copyFormatted(withSpaces) {
+      let num = currentRawImei;
+      if (num.length === 14) num += calcLuhnCd(num);
+      if (num.length >= 15) {
+        const text = withSpaces 
+          ? `${num.substring(0,6)} ${num.substring(6,8)} ${num.substring(8,14)} ${num.substring(14)}`
+          : num;
+        navigator.clipboard.writeText(text);
+        showToast(`Copiado: ${text}`);
+      }
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll(".nav-pill-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".content-card").forEach(c => c.classList.remove("active"));
+
+      playBeep(600, 0.02);
+
+      if (tab === 'verify') {
+        document.getElementById("pillVerify").classList.add("active");
+        document.getElementById("panelVerify").classList.add("active");
+      } else if (tab === 'generate') {
+        document.getElementById("pillGenerate").classList.add("active");
+        document.getElementById("panelGenerate").classList.add("active");
+      } else if (tab === 'database') {
+        document.getElementById("pillDatabase").classList.add("active");
+        document.getElementById("panelDatabase").classList.add("active");
+      } else if (tab === 'publish') {
+        document.getElementById("panelPublish").classList.add("active");
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("appToast");
+      document.getElementById("toastMsg").innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    // =========================================================================
+    // REPRODUCTOR Y SELECTOR DE VIDEO/MEDIOS (C:\Users\Jhose\Documents\videos)
+    // =========================================================================
+    function handleMediaUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const bgVideo = document.getElementById("bgVideo");
+      const bgImageLayer = document.getElementById("bgImageLayer");
+
+      if (file.type.startsWith("video/")) {
+        const videoUrl = URL.createObjectURL(file);
+        bgVideo.src = videoUrl;
+        bgVideo.load();
+        bgVideo.play().then(() => {
+          bgVideo.classList.add("active");
+          bgImageLayer.style.opacity = "0.2";
+          showToast(`🎬 Video '${file.name}' activo en bucle`);
+        }).catch(err => {
+          console.warn("Autoplay fallback:", err);
+          bgVideo.muted = true;
+          bgVideo.play();
+          bgVideo.classList.add("active");
+          bgImageLayer.style.opacity = "0.2";
+          showToast(`🎬 Video '${file.name}' iniciado`);
+        });
+      } else if (file.type.startsWith("image/")) {
+        const imgUrl = URL.createObjectURL(file);
+        bgImageLayer.style.backgroundImage = `url('${imgUrl}')`;
+        bgImageLayer.style.opacity = "1";
+        bgVideo.classList.remove("active");
+        showToast(`🖼️ Fondo '${file.name}' aplicado`);
+      }
+    }
+
+    function initBackgroundMedia() {
+      const bgVideo = document.getElementById("bgVideo");
+      const bgImageLayer = document.getElementById("bgImageLayer");
+
+      bgVideo.addEventListener("playing", () => {
+        bgVideo.classList.add("active");
+        bgImageLayer.style.opacity = "0.2";
+      });
+
+      // Intentar reproducción automática si el navegador local tiene archivos compatibles
+      bgVideo.play().then(() => {
+        bgVideo.classList.add("active");
+        bgImageLayer.style.opacity = "0.2";
+      }).catch(() => {
+        // Fallback natural: se muestra bgImageLayer con videoframe_9214.png
+      });
+    }
+
+    // INICIO
+    window.addEventListener("DOMContentLoaded", () => {
+      initDatabase();
+      renderBrandChips();
+      renderDatabaseTab();
+      processImeiInput("35284011123456");
+      initBackgroundMedia();
+    });
+  </script>
+</body>
+</html>
