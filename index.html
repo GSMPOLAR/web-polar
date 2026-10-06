@@ -2,8 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#07090e">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#08060a">
   <meta name="description" content="GSM-POLAR - trabajando en nuevos procesos lo mejor en garantias polar">
   <title>GSM-POLAR • Lo mejor en garantías polar</title>
   
@@ -439,6 +443,7 @@
       position: relative;
       display: flex;
       align-items: center;
+      width: 100%;
     }
 
     .styled-input {
@@ -446,7 +451,7 @@
       background: rgba(12, 8, 16, 0.92);
       border: 1px solid rgba(255, 110, 140, 0.2);
       border-radius: var(--radius-md);
-      padding: 0.95rem 1.1rem;
+      padding: 0.95rem 5.2rem 0.95rem 1.1rem;
       color: #ffffff;
       font-family: var(--font-mono);
       font-size: 1.15rem;
@@ -457,6 +462,37 @@
         inset 0 2px 8px rgba(0, 0, 0, 0.7),
         inset 0 1px 2px rgba(0, 0, 0, 0.9),
         0 1px 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .input-quick-actions {
+      position: absolute;
+      right: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .btn-input-mini {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-secondary);
+      border-radius: var(--radius-xs);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-input-mini:hover, .btn-input-mini:active {
+      background: rgba(255, 23, 68, 0.28);
+      color: #fff;
+      border-color: var(--neon-primary);
+      box-shadow: 0 0 12px rgba(255, 23, 68, 0.4);
     }
 
     .styled-input:focus {
@@ -841,6 +877,287 @@
     .publish-box strong {
       color: var(--neon-secondary);
     }
+
+    /* ==========================================================================
+       SISTEMA DE DISEÑO ADAPTABLE (PC ESCRITORIO + MÓVILES / TABLETS)
+       ========================================================================== */
+    .panel-responsive-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .grid-col-main, .grid-col-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      width: 100%;
+    }
+
+    .qty-grid-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .batch-results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.2rem;
+    }
+
+    .batch-empty-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.75rem 1rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+    }
+
+    .luhn-explain-box {
+      background: linear-gradient(155deg, rgba(22, 14, 28, 0.88) 0%, rgba(12, 8, 16, 0.94) 100%);
+      border: 1px solid rgba(255, 110, 140, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .luhn-title {
+      font-size: 0.76rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--neon-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .luhn-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+    }
+
+    .luhn-status-pill {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--neon-emerald);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius-xs);
+      padding: 0.35rem 0.65rem;
+      width: fit-content;
+    }
+
+    /* MEDIA QUERIES PARA PC / PANTALLAS GRANDES (≥ 992px) */
+    @media (min-width: 992px) {
+      .app-viewport {
+        max-width: 1200px;
+        padding: 2.2rem 2rem 4rem 2rem;
+        gap: 1.5rem;
+      }
+
+      header.hero-header {
+        padding: 1.4rem 2rem;
+      }
+
+      .brand-wrap {
+        gap: 1.25rem;
+      }
+
+      .brand-logo-gem {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+      }
+
+      .brand-info h1 {
+        font-size: 1.55rem;
+      }
+
+      .brand-info p {
+        font-size: 0.85rem;
+      }
+
+      .nav-bar-pill {
+        padding: 0.45rem;
+        gap: 0.6rem;
+      }
+
+      .nav-pill-btn {
+        font-size: 0.94rem;
+        padding: 0.85rem 1.2rem;
+      }
+
+      .content-card {
+        padding: 2.2rem;
+      }
+
+      /* Disposición en 2 columnas para PC */
+      .panel-responsive-grid {
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 1.75rem;
+        align-items: start;
+      }
+
+      .digit-ribbon {
+        gap: 4px;
+        padding: 11px 9px;
+      }
+
+      .digit-slot {
+        min-width: 28px;
+        padding: 9px 3px;
+      }
+
+      .digit-char {
+        font-size: 1.22rem;
+      }
+
+      .digit-weight {
+        font-size: 0.62rem;
+      }
+
+      .batch-results-list {
+        max-height: 380px;
+      }
+
+      #databaseListContainer {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+        max-height: 520px !important;
+      }
+    }
+
+    /* MEDIA QUERIES PARA PANTALLAS MEDIANAS / TABLETS (768px a 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .app-viewport {
+        max-width: 820px;
+        padding: 1.5rem 1.5rem 3rem 1.5rem;
+      }
+
+      .digit-slot {
+        min-width: 24px;
+        padding: 7px 2px;
+      }
+    }
+
+    /* MEDIA QUERIES PARA MÓVILES (≤ 767px) */
+    @media (max-width: 767px) {
+      .app-viewport {
+        padding: max(0.85rem, env(safe-area-inset-top)) 0.85rem max(2.5rem, env(safe-area-inset-bottom)) 0.85rem;
+        gap: 0.95rem;
+      }
+
+      header.hero-header {
+        padding: 1rem 1.15rem;
+      }
+
+      .brand-wrap {
+        gap: 0.75rem;
+      }
+
+      .brand-logo-gem {
+        width: 42px;
+        height: 42px;
+        font-size: 1.15rem;
+      }
+
+      .brand-info h1 {
+        font-size: 1.22rem;
+      }
+
+      .brand-info p {
+        font-size: 0.72rem;
+        line-height: 1.25;
+      }
+
+      .nav-bar-pill {
+        padding: 0.35rem;
+        gap: 0.35rem;
+      }
+
+      .nav-pill-btn {
+        font-size: 0.8rem;
+        padding: 0.65rem 0.25rem;
+        gap: 0.35rem;
+      }
+
+      .content-card {
+        padding: 1.25rem 1rem;
+      }
+
+      .styled-input {
+        font-size: 1.05rem;
+        padding: 0.85rem 5rem 0.85rem 0.85rem;
+      }
+
+      .meta-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.55rem;
+      }
+
+      .meta-box {
+        padding: 0.75rem 0.65rem;
+      }
+
+      .meta-value {
+        font-size: 0.92rem;
+      }
+    }
+
+    /* MEDIA QUERIES PARA MÓVILES COMPACTOS (≤ 480px) */
+    @media (max-width: 480px) {
+      header.hero-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .digit-ribbon {
+        gap: 2px;
+        padding: 7px 3px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .digit-slot {
+        min-width: 17px;
+        padding: 5px 1px;
+      }
+
+      .digit-char {
+        font-size: 0.92rem;
+      }
+
+      .digit-weight {
+        font-size: 0.5rem;
+      }
+
+      .copy-actions-bar {
+        flex-direction: column;
+      }
+
+      .btn-secondary-action {
+        width: 100%;
+        padding: 0.72rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -907,63 +1224,83 @@
         <span class="badge-chip">LUHN MOD-10</span>
       </div>
 
-      <div class="input-field-group">
-        <div class="field-label-row">
-          <span>Ingresa 14 dígitos (calcula el 15º) o 15 dígitos (valida)</span>
-          <span id="charCounter" style="font-family: var(--font-mono); color: var(--neon-secondary);">14 / 15</span>
-        </div>
-        <div class="styled-input-wrap">
-          <input 
-            type="text" 
-            id="imeiInput" 
-            class="styled-input" 
-            placeholder="Ej: 35284011123456" 
-            maxlength="15"
-            autocomplete="off"
-            value="35284011123456"
-            oninput="processImeiInput(this.value)"
-          >
-        </div>
-      </div>
+      <div class="panel-responsive-grid">
+        <!-- Columna Principal: Entrada de Datos & Ribbon de Dígitos -->
+        <div class="grid-col-main">
+          <div class="input-field-group">
+            <div class="field-label-row">
+              <span>Ingresa 14 dígitos (calcula 15º) o 15 dígitos (valida)</span>
+              <span id="charCounter" style="font-family: var(--font-mono); color: var(--neon-secondary);">14 / 15</span>
+            </div>
+            <div class="styled-input-wrap">
+              <input 
+                type="tel" 
+                inputmode="numeric"
+                pattern="[0-9]*"
+                id="imeiInput" 
+                class="styled-input" 
+                placeholder="Ej: 35284011123456" 
+                maxlength="15"
+                autocomplete="off"
+                value="35284011123456"
+                oninput="processImeiInput(this.value)"
+              >
+              <div class="input-quick-actions">
+                <button type="button" class="btn-input-mini" onclick="pasteFromClipboard()" title="Pegar del portapapeles">📋</button>
+                <button type="button" class="btn-input-mini" onclick="clearImeiInput()" title="Borrar campo">✕</button>
+              </div>
+            </div>
+          </div>
 
-      <!-- VISUALIZADOR DE DÍGITOS TIPO CHIP (RIBBON) -->
-      <div class="digit-inspector" id="inspectorBox">
-        <div class="inspector-header">
-          <div class="status-badge-live" id="statusBadge">
-            <span class="pulse-dot"></span>
-            <span id="statusText">Calculando Dígito de Control...</span>
-          </div>
-          <button class="action-icon-btn" style="width: 30px; height: 30px; font-size: 0.8rem;" onclick="copyCurrentImei()" title="Copiar IMEI">📋</button>
-        </div>
+          <!-- VISUALIZADOR DE DÍGITOS TIPO CHIP (RIBBON) -->
+          <div class="digit-inspector" id="inspectorBox">
+            <div class="inspector-header">
+              <div class="status-badge-live" id="statusBadge">
+                <span class="pulse-dot"></span>
+                <span id="statusText">Calculando Dígito de Control...</span>
+              </div>
+              <button class="action-icon-btn" style="width: 32px; height: 32px; font-size: 0.85rem;" onclick="copyCurrentImei()" title="Copiar IMEI">📋</button>
+            </div>
 
-        <!-- 15 RANURAS VISUALES CON PESOS (×1, ×2) -->
-        <div class="digit-ribbon" id="digitRibbon">
-          <!-- Renderizado dinámicamente con JS -->
-        </div>
+            <!-- 15 RANURAS VISUALES CON PESOS (×1, ×2) -->
+            <div class="digit-ribbon" id="digitRibbon">
+              <!-- Renderizado dinámicamente con JS -->
+            </div>
 
-        <!-- METADATOS TÉCNICOS DESGLOSADOS -->
-        <div class="meta-cards-grid">
-          <div class="meta-box">
-            <span class="meta-title">TAC (8d GSMA)</span>
-            <span class="meta-value" id="dispTac8" style="color: var(--neon-secondary);">35284011</span>
-          </div>
-          <div class="meta-box">
-            <span class="meta-title">TAC Clásico + FAC</span>
-            <span class="meta-value" id="dispTacFac" style="color: #cbd5e1;">352840 + 11</span>
-          </div>
-          <div class="meta-box">
-            <span class="meta-title">SNR (Serie 6d)</span>
-            <span class="meta-value" id="dispSnr" style="color: var(--neon-violet);">123456</span>
-          </div>
-          <div class="meta-box">
-            <span class="meta-title">15º Dígito (Control)</span>
-            <span class="meta-value" id="dispCd" style="color: var(--neon-rose); font-size: 1.25rem;">6</span>
+            <div class="copy-actions-bar">
+              <button class="btn-secondary-action" onclick="copyFormatted(false)">📋 Copiar Continuo</button>
+              <button class="btn-secondary-action" onclick="copyFormatted(true)">📑 Copiar con Espacios</button>
+            </div>
           </div>
         </div>
 
-        <div class="copy-actions-bar">
-          <button class="btn-secondary-action" onclick="copyFormatted(false)">📋 Copiar Continuo</button>
-          <button class="btn-secondary-action" onclick="copyFormatted(true)">📑 Copiar con Espacios</button>
+        <!-- Columna Lateral: Tarjetas de Desglose Técnico & Algoritmo -->
+        <div class="grid-col-side">
+          <div class="meta-cards-grid">
+            <div class="meta-box">
+              <span class="meta-title">TAC Oficial (8d GSMA)</span>
+              <span class="meta-value" id="dispTac8" style="color: var(--neon-secondary);">35284011</span>
+            </div>
+            <div class="meta-box">
+              <span class="meta-title">TAC Clásico + FAC</span>
+              <span class="meta-value" id="dispTacFac" style="color: #cbd5e1;">352840 + 11</span>
+            </div>
+            <div class="meta-box">
+              <span class="meta-title">SNR (Serie 6d)</span>
+              <span class="meta-value" id="dispSnr" style="color: var(--neon-violet);">123456</span>
+            </div>
+            <div class="meta-box">
+              <span class="meta-title">15º Dígito (Control)</span>
+              <span class="meta-value" id="dispCd" style="color: var(--neon-rose); font-size: 1.3rem;">6</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta explicativa y verificación -->
+          <div class="luhn-explain-box">
+            <div class="luhn-title">📐 Algoritmo de Luhn (GSMA 3GPP)</div>
+            <p class="luhn-desc">Los dígitos en posiciones pares se duplican (×2). La suma total de cifras módulo 10 determina la autenticidad estructural del dispositivo.</p>
+            <div class="luhn-status-pill" id="luhnFormulaSummary">Suma ponderada activa: OK</div>
+          </div>
         </div>
       </div>
     </section>
@@ -979,53 +1316,68 @@
         <span class="badge-chip">PRESETS OFICIALES</span>
       </div>
 
-      <!-- Chips de Selección Rápida de Marca -->
-      <div class="input-field-group">
-        <div class="field-label-row">
-          <span>Marca Rápida</span>
-        </div>
-        <div class="brand-chips-scroll" id="brandChipsRow">
-          <!-- Generado con JS -->
-        </div>
-      </div>
+      <div class="panel-responsive-grid">
+        <!-- Columna Principal: Controles y Parámetros -->
+        <div class="grid-col-main">
+          <!-- Chips de Selección Rápida de Marca -->
+          <div class="input-field-group">
+            <div class="field-label-row">
+              <span>Marca Rápida</span>
+            </div>
+            <div class="brand-chips-scroll" id="brandChipsRow">
+              <!-- Generado con JS -->
+            </div>
+          </div>
 
-      <!-- Selector de Modelo -->
-      <div class="input-field-group">
-        <div class="field-label-row">
-          <span>Modelo Específico</span>
-          <span id="labelTacInfo" style="font-family: var(--font-mono); color: var(--neon-secondary);">TAC: --</span>
+          <!-- Selector de Modelo -->
+          <div class="input-field-group">
+            <div class="field-label-row">
+              <span>Modelo Específico</span>
+              <span id="labelTacInfo" style="font-family: var(--font-mono); color: var(--neon-secondary);">TAC: --</span>
+            </div>
+            <select id="selectModelGen" class="styled-input" onchange="onModelGenChange(this.value)">
+              <!-- Opciones dinámicas -->
+            </select>
+          </div>
+
+          <!-- Cantidad a Generar -->
+          <div class="input-field-group">
+            <div class="field-label-row">
+              <span>Cantidad a Generar</span>
+            </div>
+            <div class="qty-grid-bar">
+              <button class="btn-secondary-action qty-btn active" onclick="setQty(1, this)">1</button>
+              <button class="btn-secondary-action qty-btn" onclick="setQty(3, this)">3</button>
+              <button class="btn-secondary-action qty-btn" onclick="setQty(5, this)">5</button>
+              <button class="btn-secondary-action qty-btn" onclick="setQty(10, this)">10</button>
+            </div>
+          </div>
+
+          <button class="btn-glow-cta" id="btnRunGenerate" onclick="generateBatchImeis()">
+            <span>⚡ Generar IMEIs con Dígito de Control</span>
+          </button>
         </div>
-        <select id="selectModelGen" class="styled-input" onchange="onModelGenChange(this.value)">
-          <!-- Opciones dinámicas -->
-        </select>
-      </div>
 
-      <!-- Cantidad a Generar -->
-      <div class="input-field-group">
-        <div class="field-label-row">
-          <span>Cantidad a Generar</span>
+        <!-- Columna Lateral: Resultados y Exportación -->
+        <div class="grid-col-side">
+          <div class="batch-results-header">
+            <span class="meta-title">Lote Generado</span>
+            <span id="batchCountBadge" class="badge-chip">0 items</span>
+          </div>
+
+          <!-- Resultados Generados -->
+          <div class="batch-results-list" id="batchResultsList">
+            <div class="batch-empty-placeholder">
+              <span>⚡ Presiona "Generar IMEIs" para ver los resultados aquí.</span>
+            </div>
+          </div>
+
+          <div class="copy-actions-bar" id="batchActionsBar" style="display: none;">
+            <button class="btn-secondary-action" onclick="copyAllBatch()">📑 Copiar Todos</button>
+            <button class="btn-secondary-action" onclick="exportBatchCsv()">📥 CSV</button>
+            <button class="btn-secondary-action" onclick="clearBatchList()">🗑️ Limpiar</button>
+          </div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
-          <button class="btn-secondary-action qty-btn active" onclick="setQty(1, this)">1</button>
-          <button class="btn-secondary-action qty-btn" onclick="setQty(3, this)">3</button>
-          <button class="btn-secondary-action qty-btn" onclick="setQty(5, this)">5</button>
-          <button class="btn-secondary-action qty-btn" onclick="setQty(10, this)">10</button>
-        </div>
-      </div>
-
-      <button class="btn-glow-cta" id="btnRunGenerate" onclick="generateBatchImeis()">
-        <span>⚡ Generar IMEIs con Dígito de Control</span>
-      </button>
-
-      <!-- Resultados Generados -->
-      <div class="batch-results-list" id="batchResultsList">
-        <!-- Renderizado dinámico -->
-      </div>
-
-      <div class="copy-actions-bar" id="batchActionsBar" style="display: none;">
-        <button class="btn-secondary-action" onclick="copyAllBatch()">📑 Copiar Todos</button>
-        <button class="btn-secondary-action" onclick="exportBatchCsv()">📥 Exportar CSV</button>
-        <button class="btn-secondary-action" onclick="clearBatchList()">🗑️ Limpiar</button>
       </div>
     </section>
 
@@ -1190,9 +1542,40 @@
       renderDatabaseTab();
     }
 
-    // ALGORITMO DE LUHN (MOD 10)
-    function calcLuhnCd(number14) {
-      if (number14.length !== 14 || !/^\d+$/.test(number14)) return -1;
+    // ACCIONES RÁPIDAS DE ENTRADA (MÓVIL Y PC)
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        const cleaned = text.replace(/\D/g, "").substring(0, 15);
+        if (cleaned) {
+          document.getElementById("imeiInput").value = cleaned;
+          processImeiInput(cleaned);
+          showToast(`Pegado: ${cleaned}`);
+        } else {
+          showToast("No hay números en el portapapeles");
+        }
+      } catch (err) {
+        const manual = prompt("Pega aquí el IMEI:");
+        if (manual) {
+          const cleaned = manual.replace(/\D/g, "").substring(0, 15);
+          document.getElementById("imeiInput").value = cleaned;
+          processImeiInput(cleaned);
+        }
+      }
+    }
+
+    function clearImeiInput() {
+      document.getElementById("imeiInput").value = "";
+      processImeiInput("");
+      document.getElementById("imeiInput").focus();
+      showToast("Campo borrado");
+    }
+
+    // ALGORITMO DE LUHN (MOD 10) CON METADATOS MATEMÁTICOS
+    function calcLuhnDetails(number14) {
+      if (number14.length !== 14 || !/^\d+$/.test(number14)) {
+        return { cd: -1, sum: 0 };
+      }
       let sum = 0;
       for (let i = 0; i < 14; i++) {
         let d = parseInt(number14.charAt(i), 10);
@@ -1203,7 +1586,12 @@
           sum += d;
         }
       }
-      return (10 - (sum % 10)) % 10;
+      const cd = (10 - (sum % 10)) % 10;
+      return { cd: cd, sum: sum };
+    }
+
+    function calcLuhnCd(number14) {
+      return calcLuhnDetails(number14).cd;
     }
 
     // PROCESAMIENTO EN VIVO DE ENTRADA
@@ -1214,13 +1602,17 @@
 
       const ribbon = document.getElementById("digitRibbon");
       const box = document.getElementById("inspectorBox");
-      const badge = document.getElementById("statusBadge");
       const statusText = document.getElementById("statusText");
+      const formulaEl = document.getElementById("luhnFormulaSummary");
 
       if (clean.length < 14) {
         box.className = "digit-inspector";
         statusText.innerText = `Ingresa al menos 14 dígitos (actual: ${clean.length})`;
         statusText.style.color = "var(--text-muted)";
+        if (formulaEl) {
+          formulaEl.innerText = "Ingresa al menos 14 dígitos para calcular suma";
+          formulaEl.style.color = "var(--text-muted)";
+        }
         renderRibbonFallback(clean);
         return;
       }
@@ -1228,7 +1620,9 @@
       playBeep(clean.length === 15 ? 880 : 720, 0.03);
 
       const payload14 = clean.substring(0, 14);
-      const computedCd = calcLuhnCd(payload14);
+      const luhnInfo = calcLuhnDetails(payload14);
+      const computedCd = luhnInfo.cd;
+      const luhnSum = luhnInfo.sum;
 
       // Renderizar ranuras de dígitos
       let ribbonHtml = "";
@@ -1258,6 +1652,12 @@
         statusText.innerText = `✓ 14 DÍGITOS — 15º Dígito calculado: ${computedCd}`;
         statusText.style.color = "var(--neon-emerald)";
 
+        if (formulaEl) {
+          const total = luhnSum + computedCd;
+          formulaEl.innerText = `Suma ponderada: ${luhnSum} + [${computedCd}] = ${total} (Múltiplo de 10 ✓)`;
+          formulaEl.style.color = "var(--neon-emerald)";
+        }
+
         ribbonHtml += `
           <div class="digit-slot cd">
             <span class="digit-char" style="color: var(--neon-rose);">${computedCd}</span>
@@ -1267,11 +1667,19 @@
       } else if (clean.length === 15) {
         const inputCd = parseInt(clean.charAt(14), 10);
         const isValid = (inputCd === computedCd);
+        const total = luhnSum + inputCd;
+        const isMod10 = (total % 10 === 0);
 
         if (isValid) {
           box.className = "digit-inspector is-valid";
           statusText.innerText = `✓ IMEI VÁLIDO — Dígito de control (${inputCd}) coincide con Luhn`;
           statusText.style.color = "var(--neon-emerald)";
+
+          if (formulaEl) {
+            formulaEl.innerText = `Suma total: ${total} (Múltiplo de 10 — Estructuralmente Genuino ✓)`;
+            formulaEl.style.color = "var(--neon-emerald)";
+          }
+
           ribbonHtml += `
             <div class="digit-slot cd" style="background: rgba(16, 185, 129, 0.25); border-color: var(--neon-emerald);">
               <span class="digit-char" style="color: var(--neon-emerald);">${inputCd}</span>
@@ -1282,8 +1690,14 @@
           box.className = "digit-inspector is-invalid";
           statusText.innerText = `✗ INVÁLIDO — Dígito ingresado: ${inputCd} (Esperado: ${computedCd})`;
           statusText.style.color = "var(--neon-rose)";
+
+          if (formulaEl) {
+            formulaEl.innerText = `Suma total: ${total} (No es múltiplo de 10 — Esperado: ${computedCd} ✗)`;
+            formulaEl.style.color = "var(--neon-rose)";
+          }
+
           ribbonHtml += `
-            <div class="digit-slot cd">
+            <div class="digit-slot cd" style="background: rgba(255, 23, 68, 0.25); border-color: var(--neon-rose);">
               <span class="digit-char" style="color: var(--neon-rose);">${inputCd}</span>
               <span class="digit-weight" style="color: var(--neon-rose);">${computedCd}?</span>
             </div>
@@ -1409,6 +1823,8 @@
       }
 
       document.getElementById("batchActionsBar").style.display = "flex";
+      const badgeCount = document.getElementById("batchCountBadge");
+      if (badgeCount) badgeCount.innerText = `${selectedQty} items`;
       playBeep(880, 0.05);
       showToast(`Generados ${selectedQty} IMEI(s) válidos`);
     }
@@ -1443,7 +1859,14 @@
 
     function clearBatchList() {
       generatedBatchList = [];
-      document.getElementById("batchResultsList").innerHTML = "";
+      const container = document.getElementById("batchResultsList");
+      container.innerHTML = `
+        <div class="batch-empty-placeholder">
+          <span>⚡ Presiona "Generar IMEIs" para ver los resultados aquí.</span>
+        </div>
+      `;
+      const badgeCount = document.getElementById("batchCountBadge");
+      if (badgeCount) badgeCount.innerText = "0 items";
       document.getElementById("batchActionsBar").style.display = "none";
     }
 
